@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'News App',
+      theme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,
       home: BlocProvider(
         create: (_) => NewsBloc(repository)..add(FetchData()),

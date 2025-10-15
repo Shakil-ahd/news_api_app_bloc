@@ -1,41 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_api_app_bloc/bloc/news_event.dart';
+import 'package:news_api_app_bloc/helper/utils/url_launcher_helper.dart';
 import '../bloc/news_bloc.dart';
 import '../bloc/news_state.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('📰 News App')),
+      appBar: AppBar(title: const Text('Todays News'), centerTitle: true),
       body: BlocBuilder<NewsBloc, NewsState>(
         builder: (context, state) {
           if (state is NewsLoadingState) {
             return const Center(child: CircularProgressIndicator());
           } else if (state is NewsLoadedState) {
             final articles = state.articles;
-            return ListView.builder(
-              itemCount: articles.length,
-              itemBuilder: (context, index) {
-                final article = articles[index];
-                return Card(
-                  margin: const EdgeInsets.all(8),
-                  child: ListTile(
-                    leading: Image.network(
-                      article.image,
-                      width: 80,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, _, __) =>
-                          const Icon(Icons.image_not_supported),
-                    ),
-                    title: Text(article.title),
-                    subtitle: Text(article.description),
-                    onTap: () {},
-                  ),
-                );
+
+            return RefreshIndicator(
+              onRefresh: () async {
+                context.read<NewsBloc>().add(FetchData());
               },
+              child: ListView.builder(
+                itemCount: articles.length,
+                itemBuilder: (context, index) {
+                  final article = articles[index];
+                  return Card(
+                    margin: const EdgeInsets.all(8),
+                    child: ListTile(
+                      leading: Image.network(
+                        article.image,
+                        width: 80,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, _, __) =>
+                            const Icon(Icons.image_not_supported),
+                      ),
+                      title: Text(article.title),
+                      subtitle: Text(article.description),
+                      onTap: () {
+                        URLLauncherHelper.launchURL(context, article.url);
+                      },
+                    ),
+                  );
+                },
+              ),
             );
           } else if (state is NewsErrorState) {
             return Center(child: Text('Error: ${state.errorMsg}'));
