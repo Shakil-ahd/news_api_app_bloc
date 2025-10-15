@@ -6,11 +6,6 @@ import 'screens/home_screen.dart';
 import 'bloc/news_bloc.dart';
 import 'repository/news_repository.dart';
 
-void main() {
-  final newsRepository = NewsRepository();
-  runApp(MyApp(repository: newsRepository));
-}
-
 class MyApp extends StatelessWidget {
   final NewsRepository repository;
   const MyApp({super.key, required this.repository});
@@ -24,7 +19,12 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(create: (_) => CategoryBloc()),
       ],
-      child: MaterialApp(debugShowCheckedModeBanner: false, home: HomeScreen()),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData.dark(),
+
+        home: HomeScreen(),
+      ),
     );
   }
 }

@@ -23,9 +23,10 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(onPressed: () {}, icon: Icon(Icons.menu)),
         title: const Text('Todays News'),
         centerTitle: true,
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Colors.red,
       ),
       body: Column(
         children: [
@@ -48,7 +49,7 @@ class HomeScreen extends StatelessWidget {
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: selectedCategory == category
-                              ? Colors.blueAccent
+                              ? Colors.red
                               : Colors.grey[400],
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20),
@@ -85,8 +86,8 @@ class HomeScreen extends StatelessWidget {
                     itemCount: 5,
                     itemBuilder: (context, index) {
                       return Shimmer.fromColors(
-                        baseColor: Colors.grey.shade300,
-                        highlightColor: Colors.grey.shade100,
+                        baseColor: Colors.black87,
+                        highlightColor: Colors.redAccent,
                         child: Card(
                           margin: const EdgeInsets.all(8),
                           child: ListTile(

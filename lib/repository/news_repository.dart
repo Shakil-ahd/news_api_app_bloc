@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:news_api_app_bloc/Models/news_model.dart';
 
 class NewsRepository {
-  final String apiKey = 'c176639f5ddcc3a516b1144100ab7d69';
+  final String apiKey = 'bdcdfa6f7312b84091f93222d2d34044';
 
   Future<List<NewsArticle>> fetchNews({String? category}) async {
     final url = Uri.parse(
