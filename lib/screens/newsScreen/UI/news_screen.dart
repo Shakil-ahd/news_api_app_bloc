@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_api_app_bloc/categories/bloc/category_bloc.dart';
-import 'package:news_api_app_bloc/categories/bloc/category_event.dart';
-import 'package:news_api_app_bloc/categories/bloc/category_state.dart';
+import 'package:news_api_app_bloc/screens/newsScreen/categories/bloc/category_bloc.dart';
+import 'package:news_api_app_bloc/screens/newsScreen/categories/bloc/category_event.dart';
+import 'package:news_api_app_bloc/screens/newsScreen/categories/bloc/category_state.dart';
 import 'package:news_api_app_bloc/helper/utils/url_launcher_helper.dart';
 import 'package:shimmer/shimmer.dart';
-import '../bloc/news_bloc.dart';
-import '../bloc/news_event.dart';
-import '../bloc/news_state.dart';
+import '../../../bloc/news_bloc.dart';
+import '../../../bloc/news_event.dart';
+import '../../../bloc/news_state.dart';
 
-class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
+class NewsScreen extends StatelessWidget {
+  NewsScreen({super.key});
 
   final List<String> categories = [
     'general',
