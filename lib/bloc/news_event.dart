@@ -1,3 +1,8 @@
 abstract class NewsEvent {}
 
-class FetchData extends NewsEvent {}
+class FetchNewsEvent extends NewsEvent {}
+
+class FetchNewsByCategoryEvent extends NewsEvent {
+  final String category;
+  FetchNewsByCategoryEvent(this.category);
+}

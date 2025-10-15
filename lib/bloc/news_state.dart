@@ -2,7 +2,7 @@ import 'package:news_api_app_bloc/Models/news_model.dart';
 
 abstract class NewsState {}
 
-class NewsInitialState extends NewsState {}
+class NewsInitial extends NewsState {}
 
 class NewsLoadingState extends NewsState {}
 
@@ -13,6 +13,5 @@ class NewsLoadedState extends NewsState {
 
 class NewsErrorState extends NewsState {
   final String errorMsg;
-
   NewsErrorState(this.errorMsg);
 }
